@@ -1,4 +1,4 @@
-![An illustration of a honeybee standing on top of hexagonal honeycomb](public/hexagonal-architecture-og.jpg)
+https://www.notion.so/pierodibello/Master-hexagonal-architecture-in-Rust-8deb03c9fb044b9e9fa33d681ef24d1e#9b723803284e4cb3ad7e1525ddb968aa
 
 The complete code
 for [_Master Hexagonal Architecture in Rust_](https://www.howtocodeit.com/articles/master-hexagonal-architecture-rust).
