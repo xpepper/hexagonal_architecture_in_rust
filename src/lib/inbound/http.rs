@@ -1,13 +1,13 @@
 /*!
-    Module `http` exposes an HTTP server that handles HTTP requests to the application. Its
-    implementation is opaque to module consumers.
+Module `http` exposes an HTTP server that handles HTTP requests to the application. Its
+implementation is opaque to module consumers.
 */
 
 use std::sync::Arc;
 
 use anyhow::Context;
-use axum::Router;
 use axum::routing::post;
+use axum::Router;
 use tokio::net;
 
 use crate::domain::blog::ports::BlogService;
@@ -30,7 +30,7 @@ struct AppState<BS: BlogService> {
 
 /// The application's HTTP server. The underlying HTTP package is opaque to module consumers.
 pub struct HttpServer {
-    router: axum::Router,
+    router: Router,
     listener: net::TcpListener,
 }
 
@@ -52,7 +52,7 @@ impl HttpServer {
             author_service: Arc::new(blog_service),
         };
 
-        let router = axum::Router::new()
+        let router = Router::new()
             .nest("/api", api_routes())
             .layer(trace_layer)
             .with_state(state);
