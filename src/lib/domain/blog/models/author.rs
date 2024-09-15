@@ -102,7 +102,7 @@ impl CreateAuthorRequest {
 
 #[derive(Debug, Error)]
 pub enum CreateAuthorError {
-    #[error("blog with name {name} already exists")]
+    #[error("author with name {name} already exists")]
     Duplicate { name: AuthorName },
     #[error(transparent)]
     Unknown(#[from] anyhow::Error),
