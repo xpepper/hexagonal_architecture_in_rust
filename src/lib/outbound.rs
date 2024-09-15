@@ -1,3 +1,3 @@
-pub mod email_client;
-pub mod prometheus;
-pub mod sqlite_blog_repository;
+pub mod author_notifier_using_email_client;
+pub mod blog_metrics_using_prometheus;
+pub mod blog_repository_using_sqlite;

@@ -10,12 +10,12 @@ use crate::domain::blog::models::author::CreateAuthorError;
 use crate::domain::blog::ports::BlogRepository;
 
 #[derive(Debug, Clone)]
-pub struct SqliteBlogRepository {
+pub struct BlogRepositoryUsingSqlite {
     pool: SqlitePool,
 }
 
-impl SqliteBlogRepository {
-    pub async fn new(path: &str) -> Result<SqliteBlogRepository, anyhow::Error> {
+impl BlogRepositoryUsingSqlite {
+    pub async fn new(path: &str) -> Result<BlogRepositoryUsingSqlite, anyhow::Error> {
         let pool = SqlitePool::connect_with(
             SqliteConnectOptions::from_str(path)
                 .with_context(|| format!("invalid database path {}", path))?
@@ -24,7 +24,7 @@ impl SqliteBlogRepository {
         .await
         .with_context(|| format!("failed to open database at {}", path))?;
 
-        Ok(SqliteBlogRepository { pool })
+        Ok(BlogRepositoryUsingSqlite { pool })
     }
 
     async fn save_author(
@@ -45,7 +45,7 @@ impl SqliteBlogRepository {
     }
 }
 
-impl BlogRepository for SqliteBlogRepository {
+impl BlogRepository for BlogRepositoryUsingSqlite {
     async fn create_author(&self, req: &CreateAuthorRequest) -> Result<Author, CreateAuthorError> {
         let mut tx = self
             .pool
