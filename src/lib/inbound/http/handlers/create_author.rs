@@ -57,7 +57,7 @@ impl From<CreateAuthorError> for ApiError {
     fn from(e: CreateAuthorError) -> Self {
         match e {
             CreateAuthorError::Duplicate { name } => {
-                Self::UnprocessableEntity(format!("blog with name {} already exists", name))
+                Self::UnprocessableEntity(format!("author with name {} already exists", name))
             }
             CreateAuthorError::Unknown(cause) => {
                 tracing::error!("{:?}\n{}", cause, cause.backtrace());
@@ -70,7 +70,7 @@ impl From<CreateAuthorError> for ApiError {
 impl From<ParseCreateAuthorHttpRequestError> for ApiError {
     fn from(e: ParseCreateAuthorHttpRequestError) -> Self {
         let message = match e {
-            ParseCreateAuthorHttpRequestError::Name(_) => "blog name cannot be empty".to_string(),
+            ParseCreateAuthorHttpRequestError::Name(_) => "author name cannot be empty".to_string(),
             ParseCreateAuthorHttpRequestError::EmailAddress(cause) => {
                 format!("email address {} is invalid", cause.invalid_email)
             }
