@@ -10,7 +10,8 @@
 	],
 	"remoteEnv": {
 		"DATABASE_URL": "sqlite:/data/hexarch.db",
-		"SERVER_PORT": "8080"
+		"SERVER_PORT": "8080",
+		"RUST_LOG": "debug"
 	},
 	"postCreateCommand": "apt-get update && apt-get install -y libsqlite3-dev sqlite3 && mkdir -p /data && touch /data/hexarch.db && cargo install sqlx-cli --no-default-features --features sqlite && cargo sqlx migrate run && cargo build",
 	"remoteUser": "root",
