@@ -1,5 +1,7 @@
 https://www.notion.so/pierodibello/Master-hexagonal-architecture-in-Rust-8deb03c9fb044b9e9fa33d681ef24d1e#9b723803284e4cb3ad7e1525ddb968aa
 
+Note: If the devcontainer startup fails, make sure to execute `make -p data` in the root of the project.
+
 The complete code
 for [_Master Hexagonal Architecture in Rust_](https://www.howtocodeit.com/articles/master-hexagonal-architecture-rust).
 
