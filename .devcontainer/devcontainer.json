@@ -1,0 +1,30 @@
+{
+	"name": "Hexarch Rust Dev Container",
+	"image": "mcr.microsoft.com/devcontainers/rust:latest",
+	"features": {
+		"ghcr.io/warrenbuckley/codespace-features/sqlite:1": {}
+	},
+	"runArgs": [
+		"--mount",
+		"type=bind,source=${localWorkspaceFolder}/data,target=/data"
+	],
+	"remoteEnv": {
+		"DATABASE_URL": "sqlite:/data/hexarch.db",
+		"SERVER_PORT": "8080"
+	},
+	"postCreateCommand": "apt-get update && apt-get install -y libsqlite3-dev sqlite3 && mkdir -p /data && touch /data/hexarch.db && cargo install sqlx-cli --no-default-features --features sqlite && cargo sqlx migrate run && cargo build",
+	"remoteUser": "root",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"rust-lang.rust-analyzer",
+				"tamasfe.even-better-toml"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash",
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "rust-lang.rust-analyzer"
+			}
+		}
+	}
+}
